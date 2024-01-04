@@ -18,7 +18,6 @@ const AdminInsert = () => {
         setPrice("");
         try {
             await axios.post("http://localhost:5000/insertFood", { data: data })
-
         }
         catch (e) {
             console.log(e);
