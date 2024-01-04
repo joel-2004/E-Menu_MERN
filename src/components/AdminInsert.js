@@ -4,6 +4,8 @@ import axios from "axios"
 const AdminInsert = () => {
     const [food, setFood] = useState("");
     const [price, setPrice] = useState("");
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = {
@@ -16,6 +18,7 @@ const AdminInsert = () => {
         setPrice("");
         try {
             await axios.post("http://localhost:5000/insertFood", { data: data })
+
         }
         catch (e) {
             console.log(e);
