@@ -1,9 +1,9 @@
 
-import HomeData from "./HomeData";
+import HomeUtil from "./HomeUtil";
 
 const Home = () => {
     return (<>
-        <HomeData></HomeData>
+        <HomeUtil></HomeUtil>
     </>)
 };
 

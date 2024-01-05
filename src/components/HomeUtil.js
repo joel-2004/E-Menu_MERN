@@ -1,9 +1,9 @@
-// HomeData.js
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
 
-const HomeData = () => {
+const HomeUtil = () => {
     const [list, setList] = useState([]);
     const [cart, setCart] = useState([]);
 
@@ -75,4 +75,4 @@ const HomeData = () => {
     );
 };
 
-export default HomeData;
+export default HomeUtil;
