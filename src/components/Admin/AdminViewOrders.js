@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import NavbarAdmin from "./NavbarAdmin";
+import AdminNavbar from "./AdminNavbar";
 import axios from "axios";
 const AdminViewOrders = () => {
     const [orderList, setOrderList] = useState([]);
     useEffect(() => {
+
         const fetchData = async () => {
             const res = await axios.get("http://localhost:5000/getOrderData");
             setOrderList(res.data);
         };
         fetchData();
-    })
+    }, [orderList])
 
     // useEffect(() => {
     //     console.log(orderList);
@@ -20,9 +21,23 @@ const AdminViewOrders = () => {
         console.log(id);
         await axios.delete(`http://localhost:5000/deleteOrderData/${id}`);
     }
+    if (orderList.length === 0) {
+        return (<>
+            <AdminNavbar></AdminNavbar>
+            <div className="container-fludid">
+
+                <div className="row m-3">
+                    <h4><strong>No food item's ordered</strong></h4>
+
+                </div>
+            </div>
+
+        </>)
+    }
     return (
         <>
-            <NavbarAdmin></NavbarAdmin>
+            <AdminNavbar></AdminNavbar>
+
             {orderList.map((e) => {
                 return (
                     <div className="container-fluid p-3 " key={e._id}>

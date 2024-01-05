@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom"
-const NavbarAdmin = () => {
+const AdminNavbar = () => {
     return (
         <>
             <div className="container-fluid bg-info-subtle ">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-1"></div>
+                    <div className="col-3">
                         <Link to="/AdminInsert">Home<HomeIcon></HomeIcon></Link>
                     </div>
                     <div className="col-4">
@@ -23,4 +24,4 @@ const NavbarAdmin = () => {
     );
 };
 
-export default NavbarAdmin;
+export default AdminNavbar;

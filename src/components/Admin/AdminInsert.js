@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
-import NavbarAdmin from "./NavbarAdmin";
+import AdminNavbar from "./AdminNavbar";
 const AdminInsert = () => {
     const [food, setFood] = useState("");
     const [price, setPrice] = useState(null);
@@ -50,9 +50,22 @@ const AdminInsert = () => {
             console.log(e);
         }
     }
+    if (list.length === 0) {
+        return (<>
+            <AdminNavbar></AdminNavbar>
+            <div className="container-fludid">
+
+                <div className="row m-3">
+                    <h4><strong>No food item's added</strong></h4>
+
+                </div>
+            </div>
+
+        </>)
+    }
     return (
         <>
-            <NavbarAdmin></NavbarAdmin>
+            <AdminNavbar></AdminNavbar>
             <div className="container-fluid ">
                 <div className="row">
                     <div className="col">

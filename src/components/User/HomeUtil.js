@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Cart from "./Cart";
+import Cart from "../Cart";
 import { toast } from 'react-toastify';
 
 const HomeUtil = () => {
@@ -83,12 +83,21 @@ const HomeUtil = () => {
         }
     };
 
-    if (list.length === 0) return <>No food available</>;
+    if (list.length === 0) return (
+        <>
+            <div className="container-fludid">
+
+                <div className="row m-3">
+                    <h4>     <strong>Sorry, no food items are currently available.</strong></h4>
+                </div>
+            </div>
+        </>
+    );
 
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-md-6">
+                <div className="col-6">
                     <div className="row">
                         <div className="col-2 m-2">
                             <h4>Name:</h4>
@@ -112,7 +121,7 @@ const HomeUtil = () => {
                         </div>
                     ))}
                 </div>
-                <div className="col-2">
+                <div className="col-3 mt-2">
                     <button className="btn btn-success" onClick={checkIfCooked}> Check Status</button>
                 </div>
                 <div className="col-3">
