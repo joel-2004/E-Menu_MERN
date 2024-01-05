@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
-
+import NavbarAdmin from "./NavbarAdmin";
 const AdminInsert = () => {
     const [food, setFood] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(null);
     const [list, setList] = useState([]);
 
     useEffect(() => {
@@ -52,6 +52,7 @@ const AdminInsert = () => {
     }
     return (
         <>
+            <NavbarAdmin></NavbarAdmin>
             <div className="container-fluid ">
                 <div className="row">
                     <div className="col">
@@ -59,7 +60,7 @@ const AdminInsert = () => {
                             <label htmlFor="foodName">FoodName</label>
                             <input type="text" id="foodName" value={food} onChange={(e) => setFood(e.target.value)} ></input>
                             <label htmlFor="price">Price</label>
-                            <input type="text" id="price" value={price} onChange={(e) => setPrice(e.target.value)}></input>
+                            <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)}></input>
                             <button type="submit">Add</button>
                         </form>
                     </div>

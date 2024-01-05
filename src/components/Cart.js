@@ -13,7 +13,7 @@ const Cart = ({ cart }) => {
         <div className="container-fluid">
             {cart.map((e, index) => (
                 <div className="row" key={e._id}>
-                    <div className="col-2 m-2">{e.name}</div>
+                    <div className="col-4 m-2">{e.name}</div>
                     <div className="col-2 m-2">{e.price}</div>
                 </div>
             ))}

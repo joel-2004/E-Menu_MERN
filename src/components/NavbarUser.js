@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom"
-const Navbar = () => {
+const NavbarUser = () => {
     return (
         <>
             <div className="container-fluid bg-info-subtle ">
@@ -20,4 +20,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavbarUser;

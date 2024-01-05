@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cart from "./Cart";
@@ -6,6 +5,8 @@ import Cart from "./Cart";
 const HomeUtil = () => {
     const [list, setList] = useState([]);
     const [cart, setCart] = useState([]);
+    const [name, setName] = useState("");
+    const [tableNo, setTableNo] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +31,23 @@ const HomeUtil = () => {
     };
 
     const orderFood = async () => {
-        await axios.post("http://localhost:5000/cart", { cartItems: cart });
+
+        let total = 0;
+        cart.forEach((e) => {
+            total += Number(e.price);
+        });
+        // console.log(total + " " + name + " " + tableNo);
+        const orderData = {
+            customerName: name,
+            tableNumber: tableNo,
+            cartItems: cart,
+            total: total
+        };
+
+        console.log(orderData);
+
+        // Make sure the axios.post request sends the correct data structure
+        await axios.post("http://localhost:5000/orders", orderData);
     };
 
     if (list.length === 0) return <>No food available</>;
@@ -62,12 +79,33 @@ const HomeUtil = () => {
                         </div>
                     ))}
                 </div>
-                <div className="col-2 d-flex flex-column align-items-center">
-                    <Cart cart={cart}></Cart>
-                    <div className="col-1 mt-2">
-                        <button onClick={orderFood} className="btn btn-info">
-                            Order
-                        </button>
+                <div className="col-4">
+                    <div className="row">
+                        <div className="col">
+                            <Cart cart={cart}></Cart>
+
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col">
+                            <form>
+                                <div className="form-group">
+                                    <label>Name:</label>
+                                    <input type="text" className="form-control" onChange={(e) => setName(e.target.value)}></input>
+                                </div>
+                                <div className="form-group">
+                                    <label>Table no:</label>
+                                    <input type="text" className="form-control" onChange={(e) => setTableNo(e.target.value)} ></input>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col d-flex justify-content-center ">
+                            <button onClick={orderFood} className="btn btn-info">
+                                Order
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

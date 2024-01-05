@@ -1,15 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
+import AdminViewOrders from "./components/AdminViewOrders";
 import AdminInsert from "./components/AdminInsert";
+
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar></Navbar>
         <Routes>
           <Route path="/Admin" element={<AdminInsert></AdminInsert>}></Route>
           <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/AdminInsert" element={<AdminInsert></AdminInsert>}></Route>
+          <Route path="/AdminViewOrders" element={<AdminViewOrders></AdminViewOrders>}></Route>
+
         </Routes>
       </BrowserRouter>
     </>
