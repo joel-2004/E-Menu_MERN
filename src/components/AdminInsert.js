@@ -40,8 +40,8 @@ const AdminInsert = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/delete/${id}`)
-            const newList = list.filter((e) => e, id != id);
+            await axios.delete(`http://localhost:5000/delete/${id}`)
+            const newList = list.filter((e) => e.id !== id);
             setList(newList);
             console.log(newList);
 

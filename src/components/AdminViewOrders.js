@@ -9,12 +9,17 @@ const AdminViewOrders = () => {
             setOrderList(res.data);
         };
         fetchData();
-    }, [])
+    })
 
-    useEffect(() => {
-        console.log(orderList);
+    // useEffect(() => {
+    //     console.log(orderList);
 
-    }, [orderList])
+    // }, [orderList])
+
+    const handleFinishedCooking = async (id) => {
+        console.log(id);
+        await axios.delete(`http://localhost:5000/deleteOrderData/${id}`);
+    }
     return (
         <>
             <NavbarAdmin></NavbarAdmin>
@@ -35,8 +40,8 @@ const AdminViewOrders = () => {
                                 <h4>    FoodPrice </h4>
                             </div>
                         </div>
-                        {e.cartItems.map((p) => {
-                            return (<div className="row m-2">
+                        {e.cartItems.map((p, index) => {
+                            return (<div className="row m-2" key={index} >
                                 <div className="col-3">
                                     {p.name}
                                 </div>
@@ -48,7 +53,7 @@ const AdminViewOrders = () => {
                         <div className="row">
                             <div className="col-3"></div>
                             <div className="col-3">
-                                <button className="btn btn-primary">Finished Cooking</button>
+                                <button className="btn btn-primary" onClick={() => handleFinishedCooking(e._id)} >Finished Cooking</button>
                             </div>
                         </div>
 

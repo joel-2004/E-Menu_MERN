@@ -12,7 +12,7 @@ const NavbarAdmin = () => {
                         <Link to="/AdminInsert">Home<HomeIcon></HomeIcon></Link>
                     </div>
                     <div className="col-4">
-                        <h3>   E-Menu</h3>
+                        <h3>Admin E-Menu</h3>
                     </div>
                     <div className="col-4 text-center">
                         <Link to="/AdminViewOrders">Customers Order's</Link>  <ShoppingCartIcon fontSize="large"></ShoppingCartIcon>
