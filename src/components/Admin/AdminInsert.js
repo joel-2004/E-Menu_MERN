@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
 import AdminNavbar from "./AdminNavbar";
+import { toast } from 'react-toastify';
+
 const AdminInsert = () => {
     const [food, setFood] = useState("");
     const [price, setPrice] = useState(null);
@@ -24,7 +26,6 @@ const AdminInsert = () => {
         const data = {
             food: food,
             price: price
-
         }
         setList([...list, data]);
         //console.log(list);
@@ -50,11 +51,30 @@ const AdminInsert = () => {
             console.log(e);
         }
     }
+
+    const handleReset = async () => {
+        try {
+            toast.error("Reset");
+            await axios.delete("http://localhost:5000/reset")
+        } catch (error) {
+
+        }
+    }
     if (list.length === 0) {
         return (<>
             <AdminNavbar></AdminNavbar>
             <div className="container-fludid">
-
+                <div className="row">
+                    <div className="col">
+                        <form onSubmit={handleSubmit}>
+                            <label htmlFor="foodName" className="m-1">Food Name</label>
+                            <input type="text" id="foodName" className="input-group-sm m-1" value={food} onChange={(e) => setFood(e.target.value)} ></input>
+                            <label htmlFor="price" className="m-2">Price</label>
+                            <input type="number" id="price" className="m-2" value={price} onChange={(e) => setPrice(e.target.value)}></input>
+                            <button type="submit" className="btn btn-primary m-2">Add</button>
+                        </form>
+                    </div>
+                </div>
                 <div className="row m-3">
                     <h4><strong>No food item's added</strong></h4>
 
@@ -101,6 +121,12 @@ const AdminInsert = () => {
                         </div>
                     </div>
                 ))}
+                <div className="row">
+                    <div className="col-1"></div>
+                    <div className="col-3">
+                        <button className="btn btn-danger" onClick={handleReset}>Reset</button>
+                    </div>
+                </div>
             </div>
         </>
     );
