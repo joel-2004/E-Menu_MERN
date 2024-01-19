@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+require("dotenv").config();
 
-mongoose.connect("mongodb://0.0.0.0:27017/food").then(() => console.log("Connected to db")).catch(() => console.log("error in db connection"));
+const mongoose = require("mongoose");
+mongoose.connect(process.env.mongoDB_URL).then(() => console.log("Connected to db")).catch(() => console.log("error in db connection"));
 
 const foodSchema = new mongoose.Schema({
     name: {

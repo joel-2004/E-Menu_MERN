@@ -9,6 +9,7 @@ const orderCollection = schemas.orderCollection;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+require("dotenv").config();
 
 app.post("/insertFood", (req, res) => {
     const data = req.body.data;
@@ -117,6 +118,6 @@ app.delete("/reset", async (req, res) => {
 
 
 
-app.listen("5000", (req, res) => {
+app.listen(process.env.PORT, (req, res) => {
     console.log("Server started");
 })
