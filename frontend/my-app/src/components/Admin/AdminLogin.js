@@ -1,18 +1,26 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-
+import axios from "axios"
 const AdminLogin = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
             if (form.name === "" && form.password === "") {
                 toast.error("Enter name and password");
-            } else if (form.name === "admin" && form.password === "admin") {
-                window.location.replace("/AdminInsert");
             }
             else {
-                toast.error("Wrong username or password");
+                //window.location.replace("/AdminInsert");
+                const send = await axios.post("http://localhost:5000/AdminLogin", { name: form.name, password: form.password })
+                    .then((response => {
+                        console.log(response.data);
+                    })).catch(error => {
+                        console.log(error.message);
+                        toast.error("Wrong username or password");
+                    })
+                    ;
+
             }
+
         } catch (e) {
             console.log(e);
         }

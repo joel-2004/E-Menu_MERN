@@ -5,6 +5,7 @@ import AdminInsert from "./components/Admin/AdminInsert";
 import AdminLogin from "./components/Admin/AdminLogin";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoutes from "./components/ProtectedRoutes";
 function App() {
   return (
     <>
@@ -16,7 +17,6 @@ function App() {
           <Route path="/Admin" element={<AdminLogin></AdminLogin>}></Route>
           <Route path="/AdminInsert" element={<AdminInsert></AdminInsert>}></Route>
           <Route path="/AdminViewOrders" element={<AdminViewOrders></AdminViewOrders>}></Route>
-
         </Routes>
       </BrowserRouter>
 
