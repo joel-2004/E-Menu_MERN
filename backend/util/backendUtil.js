@@ -7,15 +7,15 @@ const jwt = require("jsonwebtoken");
 
 const insertFood = async (req, res) => {
     // console.log(req.user.username);
-    // console.log(req.body.food);
+    // console.log(req.body.data);
     //const data = req.body.data;
     const newData = {
-        name: req.body.food,
-        price: req.body.price
+        name: req.body.data.food,
+        price: req.body.data.price,
     }
     // console.log(data);
     // console.log(newData.name + " " + newData.price);
-    await foodCollection.insertMany([{ name: req.body.food, price: req.body.price }]);
+    await foodCollection.insertMany([{ name: newData.name, price: newData.price }]);
     return res.status(201).send("Food inserted successfully");
 };
 
