@@ -131,7 +131,7 @@ const adminLogin = (req, res) => {
         //     { expiresIn: "1d" }
         // )
         //console.log(process.env.REFRESH_TOKEN_SECRET);
-        res.cookie("jwt", accessToken, { httpOnly: true }).send("login successful" + accessToken);
+        res.cookie("jwt", accessToken, { httpOnly: true }).send("login successful");
         //res.json({ accessToken });
     }
 }

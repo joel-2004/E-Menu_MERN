@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
+            console.log(form.name + " " + form.password);
             if (form.name === "" && form.password === "") {
                 toast.error("Enter name and password");
             }
             else {
                 //window.location.replace("/AdminInsert");
-                const send = await axios.post("http://localhost:5000/AdminLogin", { name: form.name, password: form.password })
+                await axios.post("http://localhost:5000/AdminLogin", { name: form.name, password: form.password })
                     .then((response => {
+                        navigate("/AdminInsert");
                         console.log(response.data);
                     })).catch(error => {
                         console.log(error.message);
