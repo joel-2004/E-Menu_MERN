@@ -5,7 +5,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookie = require("cookie-parser");
 const dotenv = require("dotenv");
-const authToken = require("./middleware/authToken");
+// const authToken = require("./middleware/authToken");
 
 //getting util from backend util
 const backendUtil = require("./util/backendUtil");
@@ -26,15 +26,21 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(cookie());
-//Admin
-app.post("/insertFood", authToken, insertFood);
-app.delete("/delete/:id", authToken, deleteById)
-app.get("/getOrderdata", authToken, getOrderData);
-app.delete("/deleteOrderData/:id", authToken, deleteOrderData);
-app.delete("/reset", authToken, reset);
+//Admin with auth
+// app.post("/insertFood", authToken, insertFood);
+// app.delete("/delete/:id", authToken, deleteById)
+// app.get("/getOrderdata", authToken, getOrderData);
+// app.delete("/deleteOrderData/:id", authToken, deleteOrderData);
+// app.delete("/reset", authToken, reset);
 
 app.post("/AdminLogin", adminLogin);
 
+//Admin without AUth
+app.post("/insertFood", insertFood);
+app.delete("/delete/:id", deleteById)
+app.get("/getOrderdata", getOrderData);
+app.delete("/deleteOrderData/:id", deleteOrderData);
+app.delete("/reset", reset);
 //Users
 app.get("/getFoodData", getFood);
 app.post("/orders", orders);
