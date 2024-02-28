@@ -1,13 +1,37 @@
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const AdminViewOrders = () => {
+    axios.defaults.withCredentials = true;
+    const nav = useNavigate();
     const [orderList, setOrderList] = useState([]);
     useEffect(() => {
+        const auth = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/adminViewOrdersAuth");
+                //  console.log(res);
+                if (res.status !== 200) {
+                    nav("/Admin")
+                }
+            }
+            catch (err) {
+                console.log(err);
+                nav("/Admin")
+            }
+        };
+        auth();
+    }, [])
 
+    useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get("http://localhost:5000/getOrderData");
-            setOrderList(res.data);
+            try {
+                const res = await axios.get("http://localhost:5000/getOrderData");
+                setOrderList(res.data);
+            }
+            catch (err) {
+                console.log(err);
+            }
         };
         fetchData();
     }, [orderList])

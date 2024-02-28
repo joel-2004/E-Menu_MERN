@@ -2,11 +2,30 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import AdminNavbar from "./AdminNavbar";
 import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const AdminInsert = () => {
+    axios.defaults.withCredentials = true;
     const [food, setFood] = useState("");
     const [price, setPrice] = useState(null);
     const [list, setList] = useState([]);
+    const nav = useNavigate();
+    useEffect(() => {
+        const auth = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/adminViewOrdersAuth");
+                //  console.log(res);
+                if (res.status !== 200) {
+                    nav("/Admin")
+                }
+            }
+            catch (err) {
+                console.log(err);
+                nav("/Admin")
+            }
+        };
+        auth();
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {

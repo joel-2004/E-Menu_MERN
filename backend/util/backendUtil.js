@@ -5,6 +5,7 @@ const foodCollection = schemas.foodCollection;
 const orderCollection = schemas.orderCollection;
 const jwt = require("jsonwebtoken");
 
+
 const insertFood = async (req, res) => {
     // console.log(req.user.username);
     // console.log(req.body.data);
@@ -136,4 +137,14 @@ const adminLogin = (req, res) => {
     }
 }
 
-module.exports = { insertFood, getFood, orders, deletById, getOrderData, deleteOrderData, checkIfCooked, reset, adminLogin };
+const logout = (req, res) => {
+    res.clearCookie("jwt");
+    return res.status(200).json({ "message": "logged out" });
+}
+
+const adminViewOrdersAuth = (req, res) => {
+    // console.log("hi");
+    return res.status(200).json({ "message": "verified" });
+}
+
+module.exports = { insertFood, getFood, orders, deletById, getOrderData, deleteOrderData, checkIfCooked, reset, adminLogin, logout, adminViewOrdersAuth };

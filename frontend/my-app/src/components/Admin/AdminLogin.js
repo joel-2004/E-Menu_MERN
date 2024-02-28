@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios"
+
 import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
+    axios.defaults.withCredentials = true;
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         try {
